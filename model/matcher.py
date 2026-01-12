@@ -1,14 +1,17 @@
-from sentence_transformers import SentenceTransformer
 import pandas as pd
 import numpy as np
 import faiss
+from sentence_transformers import SentenceTransformer
 
-# Load model and data
+# Load model and data once
 model = SentenceTransformer("all-MiniLM-L6-v2")
-index = faiss.read_index("model/supplier.index")
 data = pd.read_csv("data/suppliers.csv")
 
-def find_matches(query, k=3):
+# Load FAISS index
+index = faiss.read_index("model/supplier.index")
+
+def find_matches(query, k=5):
+    print("Understanding buyer intent...")
     q_vector = model.encode([query])
     distances, indices = index.search(np.array(q_vector), k)
 
@@ -17,15 +20,10 @@ def find_matches(query, k=3):
     for pos, i in enumerate(indices[0]):
         supplier = data.iloc[i]
 
-        # 🔢 Base score from semantic similarity
-        score = round(100 - distances[0][pos] * 10, 2)
+        # Convert numpy float -> Python float
+        score = float(round(100 - distances[0][pos] * 10, 2))
 
-        # 🏭 PART 3 — Business Rules (THIS IS WHERE IT GOES)
-        if "india" in query.lower() and supplier["location"].lower() == "india":
-            score += 5
-
-        # 🧾 Explainability
-        reason = f"Matched on product relevance and industry alignment. Location: {supplier['location']}."
+        reason = f"Matched based on product relevance and location: {supplier['location']}"
 
         results.append({
             "company": supplier["company"],
@@ -35,8 +33,5 @@ def find_matches(query, k=3):
             "match_score": score,
             "reason": reason
         })
-
-    # 🥇 PART 2 — Ranking (AFTER the loop, before return)
-    results = sorted(results, key=lambda x: x["match_score"], reverse=True)
 
     return results

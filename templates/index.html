@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NexMatch AI</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        button {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>NexMatch — AI Supplier Matching</h2>
+        <input id="query" placeholder="Enter your requirement..." />
+        <button onclick="search()">Find Suppliers</button>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function search() {
+            const q = document.getElementById("query").value;
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "Searching...";
+
+            fetch("/match", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query: q })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    let output = "";
+                    data.forEach(item => {
+                        output += `
+            <div class="result">
+                <b>${item.company}</b> — ${item.product}<br>
+                ${item.location}<br>
+                <small>Match Score: ${item.match_score}</small><br>
+                <i>${item.reason}</i>
+            </div>
+            `;
+                    });
+                    resultsDiv.innerHTML = output;
+                })
+                .catch(err => {
+                    console.error(err);
+                    resultsDiv.innerHTML = "Server error. Try again.";
+                });
+        }
+    </script>
+
+</body>
+
+</html>
