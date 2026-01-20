@@ -1,23 +1,35 @@
-from sentence_transformers import SentenceTransformer
 import pandas as pd
 import numpy as np
 import faiss
+import os
+from sentence_transformers import SentenceTransformer
 
-print("Loading AI model...")
-model = SentenceTransformer("all-MiniLM-L6-v2")
+# Load dataset
+data_path = "data/suppliers.csv"
 
-print("Reading supplier data...")
-data = pd.read_csv("data/suppliers.csv")
+if not os.path.exists(data_path):
+    print(f"Error: {data_path} not found! Please create the data folder and CSV file.")
+else:
+    data = pd.read_csv(data_path)
+    data.fillna("", inplace=True)
 
-texts = data["description"].tolist()
+    # Combine columns for semantic context
+    data['combined_text'] = data['product'] + " " + data['category'] + " " + data['description']
 
-print("Generating embeddings...")
-embeddings = model.encode(texts)
+    # Load AI model
+    model = SentenceTransformer("all-MiniLM-L6-v2")
 
-print("Building vector index...")
-index = faiss.IndexFlatL2(embeddings.shape[1])
-index.add(np.array(embeddings))
+    # Generate embeddings
+    print("Generating AI embeddings for 30 rows...")
+    embeddings = model.encode(data['combined_text'].tolist())
+    vectors = np.array(embeddings).astype('float32')
 
-faiss.write_index(index, "model/supplier.index")
+    # Create and save FAISS index
+    dimension = vectors.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(vectors)
 
-print("NexMatch embedding engine ready.")
+    # Ensure model folder exists and save index
+    os.makedirs("model", exist_ok=True)
+    faiss.write_index(index, "model/company.index")
+    print("✅ Success: model/company.index has been created.")

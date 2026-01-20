@@ -5,7 +5,7 @@
     <title>NexMatch AI</title>
     <style>
         body {
-            font-family: Arial;
+            font-family: 'Segoe UI', sans-serif;
             background: #f4f6f8;
             padding: 40px;
         }
@@ -19,71 +19,83 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        input,
-        button {
-            padding: 10px;
+        input {
+            padding: 12px;
             width: 100%;
+            box-sizing: border-box;
             margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-size: 16px;
         }
 
         button {
+            padding: 12px;
+            width: 100%;
+            margin-top: 15px;
             background: #4f46e5;
             color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .result {
             margin-top: 15px;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            border-left: 4px solid #4f46e5;
+            background: #f9fafb;
+            border-bottom: 1px solid #eee;
+        }
+
+        .score {
+            color: #059669;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-
     <div class="box">
         <h2>NexMatch — AI Supplier Matching</h2>
-        <input id="query" placeholder="Enter your requirement..." />
-        <button onclick="search()">Find Suppliers</button>
+        <input id="query" placeholder="Describe what you need (e.g. car body parts)..." />
+        <button onclick="search()">Find Best Suppliers</button>
         <div id="results"></div>
     </div>
 
     <script>
-        function search() {
+        async function search() {
             const q = document.getElementById("query").value;
             const resultsDiv = document.getElementById("results");
+
+            if (!q) return;
             resultsDiv.innerHTML = "Searching...";
 
-            fetch("/match", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ query: q })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    let output = "";
-                    data.forEach(item => {
-                        output += `
-            <div class="result">
-                <b>${item.company}</b> — ${item.product}<br>
-                ${item.location}<br>
-                <small>Match Score: ${item.match_score}</small><br>
-                <i>${item.reason}</i>
-            </div>
-            `;
-                    });
-                    resultsDiv.innerHTML = output;
-                })
-                .catch(err => {
-                    console.error(err);
-                    resultsDiv.innerHTML = "Server error. Try again.";
+            try {
+                const res = await fetch("/match", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: q })
                 });
+                const data = await res.json();
+
+                let output = "";
+                data.forEach(item => {
+                    output += `
+                        <div class="result">
+                            <b>${item.company}</b> (${item.location})<br>
+                            <span>Product: ${item.product}</span><br>
+                            <small class="score">Match Score: ${item.match_score}%</small><br>
+                            <i>${item.reason}</i>
+                        </div>`;
+                });
+                resultsDiv.innerHTML = output || "No matches found.";
+            } catch (err) {
+                resultsDiv.innerHTML = "Error connecting to server.";
+            }
         }
     </script>
-
 </body>
 
 </html>

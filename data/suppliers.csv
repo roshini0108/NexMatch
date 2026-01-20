@@ -1,16 +1,31 @@
-supplier_id,company,product,industry,location,capacity,description
-1,Alpha Metals,Steel Bolts,Automotive,India,5000,High quality steel fasteners for automobile manufacturing
-2,Beta Plastics,Plastic Containers,Packaging,India,10000,Durable food grade plastic containers for packaging
-3,Gamma Gears,Industrial Gears,Manufacturing,Germany,2000,Precision gears for heavy machinery
-4,Delta Electronics,Circuit Boards,Electronics,China,8000,High performance PCB boards for electronic devices
-5,Omega Castings,Iron Castings,Automotive,India,3000,Heavy duty iron castings for automobile engines
-6,Sigma Textiles,Cotton Fabrics,Apparel,Bangladesh,15000,Soft and durable cotton fabrics for clothing manufacturers
-7,Theta Chemicals,Chemical Solvents,Chemicals,USA,6000,Industrial   solvents for various applications
-8,Lambda Lumber,Wooden Planks,Construction,Canada,4000,High quality wooden planks for building projects
-9,Phi Electronics,LED Lights,Electronics,South Korea,7000,Energy efficient LED lighting solutions
-10,Zeta Foods,Frozen Vegetables,Food Processing,USA,12000,Fresh frozen vegetables for retail and food service
-11,Eta Machinery,Hydraulic Pumps,Manufacturing,Germany,2500,Durable hydraulic pumps for industrial use
-12,Iota Plastics,Plastic Films,Packaging,India,9000,Versatile plastic films for packaging applications
-13,Kappa Metals,Aluminum Sheets,Aerospace,USA,3500,Lightweight  aluminum sheets for aerospace industry
-14,Mu Textiles,Synthetic Fabrics,Apparel,China,11000,High performance synthetic fabrics for sportswear
-15,Nu Chemicals,Industrial Adhesives,Chemicals,India,5000,Strong industrial adhesives for manufacturing
+company,product,category,location,description
+SteelForge,Industrial Steel Sheets,Metal Manufacturing,Mumbai,Produces high-strength steel sheets for automotive and construction industries
+AutoFab,Car Body Parts,Automobile Manufacturing,Chennai,Manufactures precision car body panels for major automakers
+RotorTech,Electric Motors,Electrical Manufacturing,Pune,Builds energy-efficient motors for industrial machines
+PackPro,Industrial Packaging,Manufacturing,Bangalore,Creates heavy-duty packaging materials for factories
+PipeMaster,Steel Pipes,Metal Manufacturing,Hyderabad,Produces corrosion-resistant pipes for oil and gas sector
+MoldCraft,Plastic Injection Molds,Plastic Manufacturing,Coimbatore,Designs and manufactures molds for plastic components
+GearWorks,Industrial Gears,Mechanical Manufacturing,Delhi,Produces high-precision gears for machinery
+FabX,Sheet Metal Fabrication,Manufacturing,Mumbai,Provides custom sheet metal cutting and welding services
+BuildAll,Concrete Blocks,Construction Manufacturing,Chennai,Manufactures high-quality concrete blocks for buildings
+WireTech,Copper Wires,Electrical Manufacturing,Pune,Produces insulated copper wires for industries
+TextilPlus,Industrial Fabrics,Textile Manufacturing,Surat,Manufactures fire-resistant fabrics for factories
+BoltFix,Industrial Fasteners,Mechanical Manufacturing,Bangalore,Produces high-strength bolts and screws
+CoolAir,Industrial AC Units,HVAC Manufacturing,Hyderabad,Builds air conditioning systems for large factories
+PumpForce,Water Pumps,Industrial Manufacturing,Coimbatore,Manufactures heavy-duty water pumps for plants
+CastWell,Iron Casting,Metal Manufacturing,Kolhapur,Produces cast iron machine components
+WeldPro,Industrial Welding Equipment,Manufacturing,Pune,Builds automated welding machines for factories
+PanelTech,Control Panels,Electrical Manufacturing,Delhi,Manufactures industrial control panels for automation
+FiberMax,Carbon Fiber Parts,Advanced Manufacturing,Bangalore,Produces lightweight carbon fiber components
+GlassForge,Industrial Glass,Manufacturing,Chennai,Manufactures heat-resistant glass for factories
+RollSteel,Steel Rolling Mills,Metal Manufacturing,Mumbai,Operates rolling mills for industrial steel production
+AutoGear,Transmission Parts,Automobile Manufacturing,Pune,Manufactures gearbox components for vehicles
+ChemMix,Industrial Chemicals,Chemical Manufacturing,Hyderabad,Produces chemicals used in factories
+Roboticraft,Industrial Robots,Automation Manufacturing,Bangalore,Builds robotic arms for assembly lines
+PaintPro,Industrial Coatings,Chemical Manufacturing,Mumbai,Provides anti-corrosion coatings for machinery
+PressTech,Hydraulic Press Machines,Mechanical Manufacturing,Chennai,Manufactures heavy hydraulic presses
+FilterMax,Air Filtration Systems,Manufacturing,Pune,Builds industrial air filters for factories
+ToolCraft,CNC Cutting Tools,Precision Manufacturing,Bangalore,Produces cutting tools for CNC machines
+PipeLine,Aluminum Pipes,Metal Manufacturing,Hyderabad,Manufactures lightweight aluminum pipes
+HeatCore,Industrial Furnaces,Manufacturing,Coimbatore,Builds high-temperature furnaces for metal plants
+SparkTech,Industrial Generators,Electrical Manufacturing,Mumbai,Produces backup power generators for factories

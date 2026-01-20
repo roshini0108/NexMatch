@@ -10,14 +10,12 @@ def home():
 @app.route("/match", methods=["POST"])
 def match():
     try:
-        data = request.get_json()
-
-        if not data or "query" not in data:
+        req_data = request.get_json()
+        if not req_data or "query" not in req_data:
             return jsonify({"error": "Missing query"}), 400
 
-        query = data["query"]
+        query = req_data["query"]
         results = find_matches(query)
-
         return jsonify(results)
 
     except Exception as e:
@@ -26,3 +24,4 @@ def match():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    CORS(app)
