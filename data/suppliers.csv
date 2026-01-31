@@ -1,31 +1,31 @@
-company,product,category,location,description
-SteelForge,Industrial Steel Sheets,Metal Manufacturing,Mumbai,Produces high-strength steel sheets for automotive and construction industries
-AutoFab,Car Body Parts,Automobile Manufacturing,Chennai,Manufactures precision car body panels for major automakers
-RotorTech,Electric Motors,Electrical Manufacturing,Pune,Builds energy-efficient motors for industrial machines
-PackPro,Industrial Packaging,Manufacturing,Bangalore,Creates heavy-duty packaging materials for factories
-PipeMaster,Steel Pipes,Metal Manufacturing,Hyderabad,Produces corrosion-resistant pipes for oil and gas sector
-MoldCraft,Plastic Injection Molds,Plastic Manufacturing,Coimbatore,Designs and manufactures molds for plastic components
-GearWorks,Industrial Gears,Mechanical Manufacturing,Delhi,Produces high-precision gears for machinery
-FabX,Sheet Metal Fabrication,Manufacturing,Mumbai,Provides custom sheet metal cutting and welding services
-BuildAll,Concrete Blocks,Construction Manufacturing,Chennai,Manufactures high-quality concrete blocks for buildings
-WireTech,Copper Wires,Electrical Manufacturing,Pune,Produces insulated copper wires for industries
-TextilPlus,Industrial Fabrics,Textile Manufacturing,Surat,Manufactures fire-resistant fabrics for factories
-BoltFix,Industrial Fasteners,Mechanical Manufacturing,Bangalore,Produces high-strength bolts and screws
-CoolAir,Industrial AC Units,HVAC Manufacturing,Hyderabad,Builds air conditioning systems for large factories
-PumpForce,Water Pumps,Industrial Manufacturing,Coimbatore,Manufactures heavy-duty water pumps for plants
-CastWell,Iron Casting,Metal Manufacturing,Kolhapur,Produces cast iron machine components
-WeldPro,Industrial Welding Equipment,Manufacturing,Pune,Builds automated welding machines for factories
-PanelTech,Control Panels,Electrical Manufacturing,Delhi,Manufactures industrial control panels for automation
-FiberMax,Carbon Fiber Parts,Advanced Manufacturing,Bangalore,Produces lightweight carbon fiber components
-GlassForge,Industrial Glass,Manufacturing,Chennai,Manufactures heat-resistant glass for factories
-RollSteel,Steel Rolling Mills,Metal Manufacturing,Mumbai,Operates rolling mills for industrial steel production
-AutoGear,Transmission Parts,Automobile Manufacturing,Pune,Manufactures gearbox components for vehicles
-ChemMix,Industrial Chemicals,Chemical Manufacturing,Hyderabad,Produces chemicals used in factories
-Roboticraft,Industrial Robots,Automation Manufacturing,Bangalore,Builds robotic arms for assembly lines
-PaintPro,Industrial Coatings,Chemical Manufacturing,Mumbai,Provides anti-corrosion coatings for machinery
-PressTech,Hydraulic Press Machines,Mechanical Manufacturing,Chennai,Manufactures heavy hydraulic presses
-FilterMax,Air Filtration Systems,Manufacturing,Pune,Builds industrial air filters for factories
-ToolCraft,CNC Cutting Tools,Precision Manufacturing,Bangalore,Produces cutting tools for CNC machines
-PipeLine,Aluminum Pipes,Metal Manufacturing,Hyderabad,Manufactures lightweight aluminum pipes
-HeatCore,Industrial Furnaces,Manufacturing,Coimbatore,Builds high-temperature furnaces for metal plants
-SparkTech,Industrial Generators,Electrical Manufacturing,Mumbai,Produces backup power generators for factories
+supplier_id,company,product,industry,location,capacity,description
+1,Alpha Metals,Steel Bolts,Automotive,India,5000,High quality steel fasteners for automobile manufacturing
+2,Beta Plastics,Plastic Containers,Packaging,India,10000,Durable food grade plastic containers for packaging
+3,Gamma Gears,Industrial Gears,Manufacturing,Germany,2000,Precision gears for heavy machinery
+4,Delta Electronics,Circuit Boards,Electronics,China,8000,High performance PCB boards for electronic devices
+5,Omega Castings,Iron Castings,Automotive,India,3000,Heavy duty iron castings for automobile engines
+6,Sigma Textiles,Cotton Fabrics,Apparel,India,15000,Premium quality cotton fabrics for clothing manufacturers               
+7,Theta Chemicals,Chemical Solvents,Chemicals,USA,4000,Industrial grade chemical solvents for various applications
+8,Lambda Foods,Frozen Vegetables,Food Processing,India,12000,Fresh frozen vegetables for food processing companies
+9,Epsilon Tools,Hand Tools,Construction,India,7000,Reliable hand tools for construction and DIY projects
+10,Zeta Motors,Electric Motors,Automotive,Germany,2500,High efficiency electric motors for electric vehicles                
+11,Nu Fabrics,Synthetic Fabrics,Apparel,India,9000,Durable synthetic fabrics for sportswear manufacturers
+12,Phi Plastics,Plastic Films,Packaging,India,11000,Versatile plastic films for packaging applications   
+13,Rho Electronics,Semiconductors,Electronics,China,6000,Advanced semiconductor components for electronic devices
+14,Tau Chemicals,Industrial Lubricants,Chemicals,USA,5000,High performance industrial lubricants for machinery maintenance
+15,Upsilon Foods,Dairy Products,Food Processing,India,13000,Fresh dairy products for food processing companies      
+16,Chi Tools,Power Tools,Construction,India,8000,Durable power tools for construction and industrial use
+17,Psi Motors,Hybrid Engines,Automotive,Germany,2200,Innovative hybrid engines for fuel-efficient vehicles
+18,Omicron Textiles,Wool Fabrics,Apparel,India,14000,High quality wool fabrics for winter clothing manufacturers
+19,Alpha Plastics,Plastic Pipes,Packaging,India,9500,Robust plastic pipes for industrial and residential use
+20,Beta Electronics,LED Displays,Electronics,China,7000,High resolution LED displays for advertising and information systems    
+21,Gamma Chemicals,Pesticides,Chemicals,USA,4500,Effective pesticides for agricultural applications
+22,Delta Foods,Canned Fruits,Food Processing,India,12500,Premium canned fruits for food processing companies
+23,Omega Tools,Garden Tools,Construction,India,6000,Durable garden tools for landscaping and gardening
+24,Sigma Motors,Diesel Engines,Automotive,Germany,2700,Powerful diesel engines for commercial vehicles
+25,Theta Textiles,Linen Fabrics,Apparel,India,16000,High quality linen fabrics for summer clothing manufacturers        
+26,Lambda Plastics,Plastic Wraps,Packaging,India,10500,Strong plastic wraps for food and industrial packaging
+27,Epsilon Electronics,Audio Components,Electronics,China,7500,High fidelity audio components for sound systems
+28,Zeta Chemicals,Industrial Cleaners,Chemicals,USA,4800,Effective industrial cleaners for manufacturing facilities
+29,Nu Foods,Bakery Ingredients,Food Processing,India,11500,Premium bakery ingredients for food processing companies
+30,Phi Tools,Measuring Tools,Construction,India,6500,Accurate measuring tools for construction and engineering projects          
