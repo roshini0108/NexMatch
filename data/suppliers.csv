@@ -29,3 +29,23 @@ supplier_id,company,product,industry,location,capacity,description
 28,Zeta Chemicals,Industrial Cleaners,Chemicals,USA,4800,Effective industrial cleaners for manufacturing facilities
 29,Nu Foods,Bakery Ingredients,Food Processing,India,11500,Premium bakery ingredients for food processing companies
 30,Phi Tools,Measuring Tools,Construction,India,6500,Accurate measuring tools for construction and engineering projects          
+31,Rho Motors,Gasoline Engines,Automotive,Germany,2400,Efficient gasoline engines for passenger vehicles
+32,Tau Textiles,Synthetic Yarn,Apparel,India,15500,High strength synthetic yarn for textile manufacturing   
+33,Upsilon Plastics,Plastic Bottles,Packaging,India,9800,Durable plastic bottles for beverage and industrial use
+34,Chi Electronics,Smartphone Components,Electronics,China,7200,Advanced components for smartphone manufacturing
+35,Psi Chemicals,Adhesives,Chemicals,USA,5200,High performance adhesives for industrial applications
+36,Omicron Foods,Snack Foods,Food Processing,India,11800,Tasty snack foods for food processing companies    
+37,Alpha Tools,Construction Tools,Construction,India,7500,Reliable construction tools for building and infrastructure projects
+38,Beta Motors,Electric Vehicles,Automotive,Germany,2600,Innovative electric vehicles for sustainable transportation
+39,Gamma Textiles,Cotton Yarn,Apparel,India,14500,Premium cotton yarn for textile manufacturing
+40,Delta Plastics,Plastic Sheets,Packaging,India,10200,Versatile plastic sheets for packaging and industrial use
+41,Omega Electronics,Computer Components,Electronics,China,6800,High performance computer components for PC manufacturing
+42,Sigma Chemicals,Solvents,Chemicals,USA,4700,Industrial solvents for various manufacturing processes
+43,Theta Foods,Frozen Desserts,Food Processing,India,12200,Delicious frozen desserts for food processing companies
+44,Lambda Tools,Power Saws,Construction,India,8200,Durable power saws for construction and woodworking projects
+45,Epsilon Motors,Hybrid Vehicles,Automotive,Germany,2300,Advanced hybrid vehicles for eco-friendly transportation
+46,Zeta Textiles,Wool Yarn,Apparel,India,15000,High quality wool yarn for textile manufacturing
+47,Nu Plastics,Plastic Containers,Packaging,India,9700,Durable plastic containers for food and industrial use
+48,Phi Electronics,Television Components,Electronics,China,7300,Advanced components for television manufacturing
+49,Rho Chemicals,Paints,Chemicals,USA,5300,High quality paints  for industrial and commercial applications
+50,Tau Foods,Processed Meats,Food Processing,India,11900,Premium processed meats for food processing companies  
