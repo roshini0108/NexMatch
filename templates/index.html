@@ -1,96 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
     <title>NexMatch AI</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 40px;
+            font-family: "Segoe UI", sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 0;
         }
 
-        .box {
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
             background: white;
             padding: 30px;
-            border-radius: 10px;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
         }
 
         input {
-            padding: 12px;
             width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
             font-size: 16px;
-            margin-top: 10px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
         }
 
-        button {
-            padding: 12px;
+        button.primary {
             width: 100%;
-            margin-top: 12px;
-            font-size: 16px;
-            background: #4f46e5;
+            margin-top: 15px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #5a55ea;
             color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .status {
+            margin-top: 15px;
+            color: #555;
+        }
+
+        .supplier-card {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fafbff;
+            border: 1px solid #e5e7f0;
+        }
+
+        .supplier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: white;
+        }
+
+        .strong {
+            background: #2ecc71;
+        }
+
+        .related {
+            background: #f1c40f;
+        }
+
+        .score-bar {
+            margin: 12px 0;
+            height: 8px;
+            border-radius: 6px;
+            background: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: #5a55ea;
+        }
+
+        .summary {
+            font-style: italic;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        .feedback {
+            margin-top: 12px;
+        }
+
+        .feedback button {
+            margin-right: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
             border: none;
             cursor: pointer;
-            border-radius: 6px;
         }
 
-        .result {
-            margin-top: 15px;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+        .feedback .positive {
+            background: #e8f7ef;
+        }
+
+        .feedback .negative {
+            background: #fdecea;
+        }
+
+        .sent {
+            color: green;
+            font-size: 13px;
+            margin-left: 10px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="box">
-        <h2>NexMatch — AI Supplier Matching</h2>
+    <div class="container">
+        <h1>NexMatch</h1>
+        <p class="subtitle">AI-powered supplier intelligence & matching</p>
 
-        <input id="query" placeholder="Enter your requirement..." />
-        <button onclick="search()">Find Suppliers</button>
+        <input id="query" placeholder="e.g. steel suppliers in India" />
+        <button class="primary" onclick="search()">Find Suppliers</button>
 
+        <p class="status" id="status"></p>
         <div id="results"></div>
     </div>
 
     <script>
-        async function search() {
-            const q = document.getElementById("query").value;
-            const resultsDiv = document.getElementById("results");
+        let lastQuery = "";
 
-            resultsDiv.innerHTML = "Searching...";
+        async function search() {
+            const query = document.getElementById("query").value;
+            lastQuery = query;
+
+            document.getElementById("status").innerText = "🔍 Searching suppliers...";
+            document.getElementById("results").innerHTML = "";
 
             const res = await fetch("/match", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ query: q })
+                body: JSON.stringify({ query })
             });
 
             const data = await res.json();
-            resultsDiv.innerHTML = "";
+            document.getElementById("status").innerText = "";
 
-            if (!data.length) {
-                resultsDiv.innerHTML = "No suppliers found.";
-                return;
+            if (data[0]?.fallback) {
+                document.getElementById("status").innerText = data[0].message;
+                render(data[0].alternatives);
+            } else {
+                render(data);
             }
+        }
 
-            data.forEach(item => {
-                resultsDiv.innerHTML += `
-                <div class="result">
-                    <b>${item.company}</b> — ${item.product}<br/>
-                    ${item.location}<br/>
-                    <small>Match Score: ${item.match_score}</small><br/>
-                    <i>${item.reason}</i>
-                </div>
-                `;
+        function render(list) {
+            const container = document.getElementById("results");
+
+            list.forEach(s => {
+                const confidence = s.match_score >= 60 ? "strong" : "related";
+                const label = s.match_score >= 60 ? "Strong Match" : "Related Supplier";
+
+                const card = document.createElement("div");
+                card.className = "supplier-card";
+
+                card.innerHTML = `
+            <div class="supplier-header">
+                <h3>${s.company} — ${s.product}</h3>
+                <span class="badge ${confidence}">${label}</span>
+            </div>
+
+            <p>${s.location}</p>
+
+            <div class="score-bar">
+                <div class="score-fill" style="width:${Math.min(s.match_score, 100)}%"></div>
+            </div>
+
+            <p><b>Score:</b> ${s.match_score}</p>
+            <p>${s.reason}</p>
+            <p class="summary">${s.summary}</p>
+
+            <div class="feedback">
+                <button class="positive" onclick="sendFeedback('${s.company}','positive',this)">👍 Relevant</button>
+                <button class="negative" onclick="sendFeedback('${s.company}','negative',this)">👎 Not relevant</button>
+                <span class="sent"></span>
+            </div>
+        `;
+
+                container.appendChild(card);
             });
+        }
+
+        async function sendFeedback(company, feedback, btn) {
+            const span = btn.parentElement.querySelector(".sent");
+
+            await fetch("/feedback", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    query: lastQuery,
+                    company: company,
+                    feedback: feedback
+                })
+            });
+
+            span.innerText = "Feedback saved ✓";
         }
     </script>
 
