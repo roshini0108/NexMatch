@@ -2,158 +2,366 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>NexMatch AI</title>
+    <meta charset="UTF-8">
+    <title>NexMatch</title>
 
     <style>
+        :root {
+            --bg: #f7f3ee;
+            --card: #ffffff;
+            --border: #ded6cc;
+            --text: #2f2f2f;
+            --muted: #6f6b66;
+
+            --copper: #b87333;
+            --copper-soft: #d8a36f;
+            --grey: #8a8a8a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: "Segoe UI", sans-serif;
-            background: #f4f6fb;
             margin: 0;
-            padding: 0;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
         }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        button.primary {
-            width: 100%;
-            margin-top: 15px;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #5a55ea;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .status {
-            margin-top: 15px;
-            color: #555;
-        }
-
-        .supplier-card {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 12px;
-            background: #fafbff;
-            border: 1px solid #e5e7f0;
-        }
-
-        .supplier-header {
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: #f2ede6;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
+        .nav-left {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .nav-right a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .nav-right a:hover {
+            color: var(--copper);
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 24px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .hero-buttons button {
+            padding: 14px 28px;
+            border-radius: 999px;
+            border: 1px solid var(--copper);
+            background: var(--copper);
             color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 8px;
+            transition: all 0.25s ease;
         }
 
-        .strong {
-            background: #2ecc71;
+        .hero-buttons button.secondary {
+            background: transparent;
+            color: var(--copper);
         }
 
-        .related {
-            background: #f1c40f;
+        .hero-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 115, 51, 0.25);
         }
 
-        .score-bar {
-            margin: 12px 0;
-            height: 8px;
-            border-radius: 6px;
-            background: #e0e0e0;
-            overflow: hidden;
+        /* ---------- CATEGORIES ---------- */
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
-        .score-fill {
-            height: 100%;
-            background: #5a55ea;
+        .section-sub {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .category-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: var(--copper-soft);
+        }
+
+        .category-card h3 {
+            margin: 0 0 8px;
+        }
+
+        .category-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ---------- SEARCH ---------- */
+        #search-content {
+            display: none;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .search-header {
+            font-size: 30px;
+            margin-bottom: 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .search-btn {
+            padding: 12px 26px;
+            border-radius: 999px;
+            background: var(--copper);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 115, 51, 0.25);
+        }
+
+        /* ---------- RESULTS ---------- */
+        .result-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 24px;
+        }
+
+        .score {
+            color: var(--copper);
+            font-weight: 700;
         }
 
         .summary {
             font-style: italic;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        .feedback {
-            margin-top: 12px;
+            color: var(--muted);
         }
 
         .feedback button {
+            margin-top: 12px;
             margin-right: 10px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: none;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: transparent;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .feedback .positive {
-            background: #e8f7ef;
-        }
-
-        .feedback .negative {
-            background: #fdecea;
-        }
-
-        .sent {
-            color: green;
-            font-size: 13px;
-            margin-left: 10px;
+        .feedback button:hover {
+            background: var(--copper);
+            color: white;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>NexMatch</h1>
-        <p class="subtitle">AI-powered supplier intelligence & matching</p>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="nav-left">NexMatch</div>
+        <div class="nav-right">
+            <a href="#" onclick="goHome()">Home</a>
+            <a href="#" onclick="openSearchOnly()">AI Search</a>
+        </div>
+    </div>
 
-        <input id="query" placeholder="e.g. steel suppliers in India" />
-        <button class="primary" onclick="search()">Find Suppliers</button>
+    <!-- HOME -->
+    <div id="home-content">
+        <div class="container">
+            <div class="hero">
+                <h1>NexMatch</h1>
+                <p>Discover trusted manufacturers using intelligent semantic matching.</p>
+                <div class="hero-buttons">
+                    <button onclick="scrollToCategories()">Explore Categories</button>
+                    <button class="secondary" onclick="openSearchOnly()">Try AI Search</button>
+                </div>
+            </div>
 
-        <p class="status" id="status"></p>
-        <div id="results"></div>
+            <section id="categories">
+                <h2 class="section-title">Browse by Industry</h2>
+                <p class="section-sub">Select a category — our AI does the heavy lifting.</p>
+
+                <div class="categories">
+                    <div class="category-card"
+                        onclick="goCategory('Steel Manufacturing','steel manufacturing suppliers')">
+                        <h3>Steel Manufacturing</h3>
+                        <p>Structural steel, fasteners, automotive-grade suppliers</p>
+                    </div>
+
+                    <div class="category-card" onclick="goCategory('Iron & Casting','iron casting manufacturers')">
+                        <h3>Iron & Casting</h3>
+                        <p>Foundries, industrial castings, heavy components</p>
+                    </div>
+
+                    <div class="category-card"
+                        onclick="goCategory('Machinery & Tools','industrial machinery suppliers')">
+                        <h3>Machinery & Tools</h3>
+                        <p>Industrial machines, tooling, equipment</p>
+                    </div>
+
+                    <div class="category-card"
+                        onclick="goCategory('Plastic & Packaging','plastic packaging suppliers')">
+                        <h3>Plastic & Packaging</h3>
+                        <p>Containers, food-grade and industrial packaging</p>
+                    </div>
+
+                    <div class="category-card"
+                        onclick="goCategory('Electronics & Components','electronics component manufacturers')">
+                        <h3>Electronics & Components</h3>
+                        <p>PCBs, sensors, electronic assemblies</p>
+                    </div>
+
+                    <div class="category-card" onclick="goCategory('Textiles & Fabrics','textile fabric suppliers')">
+                        <h3>Textiles & Fabrics</h3>
+                        <p>Fabrics, yarns, garment manufacturing</p>
+                    </div>
+
+                    <div class="category-card"
+                        onclick="goCategory('Industrial Chemicals','industrial chemical suppliers')">
+                        <h3>Industrial Chemicals</h3>
+                        <p>Raw chemicals, manufacturing compounds</p>
+                    </div>
+
+                    <div class="category-card"
+                        onclick="goCategory('Automotive Components','automotive component manufacturers')">
+                        <h3>Automotive Components</h3>
+                        <p>OEM parts, precision components</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div id="search-content">
+        <div class="container">
+
+            <!-- Back to Home -->
+            <button onclick="goHome()" style="
+                background:none;
+                border:none;
+                color:#b87333;
+                font-weight:600;
+                cursor:pointer;
+                margin-bottom:14px;
+                font-size:15px;
+            ">
+                ← Back to Home
+            </button>
+
+            <div class="search-header" id="search-title">AI Search</div>
+            <input id="search-input" class="search-input"
+                placeholder="Describe your requirement (e.g. high-capacity steel suppliers in India)">
+
+            <button class="search-btn" onclick="manualSearch()">Search</button>
+
+            <div id="results"></div>
+        </div>
     </div>
 
     <script>
-        let lastQuery = "";
+        function scrollToCategories() {
+            document.getElementById("categories").scrollIntoView({ behavior: "smooth" });
+        }
 
-        async function search() {
-            const query = document.getElementById("query").value;
-            lastQuery = query;
+        function openSearchOnly() {
+            document.getElementById("search-title").innerText = "AI Search";
+            document.getElementById("home-content").style.display = "none";
+            document.getElementById("search-content").style.display = "block";
+        }
 
-            document.getElementById("status").innerText = "🔍 Searching suppliers...";
+        function goHome() {
+            document.getElementById("search-content").style.display = "none";
+            document.getElementById("home-content").style.display = "block";
             document.getElementById("results").innerHTML = "";
+        }
+
+        function goCategory(label, query) {
+            document.getElementById("search-title").innerText = `Supplier companies in ${label}`;
+            document.getElementById("home-content").style.display = "none";
+            document.getElementById("search-content").style.display = "block";
+            searchSuppliers(query);
+        }
+
+        async function manualSearch() {
+            const q = document.getElementById("search-input").value.trim();
+            if (!q) return;
+            document.getElementById("search-title").innerText = "AI Search";
+            await searchSuppliers(q);
+        }
+
+        async function searchSuppliers(query) {
+            const results = document.getElementById("results");
+            results.innerHTML = "<p>Searching...</p>";
 
             const res = await fetch("/match", {
                 method: "POST",
@@ -162,67 +370,33 @@
             });
 
             const data = await res.json();
-            document.getElementById("status").innerText = "";
+            results.innerHTML = "";
 
-            if (data[0]?.fallback) {
-                document.getElementById("status").innerText = data[0].message;
-                render(data[0].alternatives);
-            } else {
-                render(data);
-            }
-        }
-
-        function render(list) {
-            const container = document.getElementById("results");
-
-            list.forEach(s => {
-                const confidence = s.match_score >= 60 ? "strong" : "related";
-                const label = s.match_score >= 60 ? "Strong Match" : "Related Supplier";
-
-                const card = document.createElement("div");
-                card.className = "supplier-card";
-
-                card.innerHTML = `
-            <div class="supplier-header">
-                <h3>${s.company} — ${s.product}</h3>
-                <span class="badge ${confidence}">${label}</span>
-            </div>
-
+            (data[0]?.fallback ? data[0].alternatives : data).forEach(s => {
+                const div = document.createElement("div");
+                div.className = "result-card";
+                div.innerHTML = `
+            <h3>${s.company} — ${s.product}</h3>
             <p>${s.location}</p>
-
-            <div class="score-bar">
-                <div class="score-fill" style="width:${Math.min(s.match_score, 100)}%"></div>
-            </div>
-
-            <p><b>Score:</b> ${s.match_score}</p>
+            <p class="score">Match Score: ${s.match_score}</p>
             <p>${s.reason}</p>
-            <p class="summary">${s.summary}</p>
+            <p class="summary">${s.summary || ""}</p>
 
             <div class="feedback">
-                <button class="positive" onclick="sendFeedback('${s.company}','positive',this)">👍 Relevant</button>
-                <button class="negative" onclick="sendFeedback('${s.company}','negative',this)">👎 Not relevant</button>
-                <span class="sent"></span>
+                <button onclick="sendFeedback('${s.company}','positive')">👍 Relevant</button>
+                <button onclick="sendFeedback('${s.company}','negative')">👎 Not Relevant</button>
             </div>
         `;
-
-                container.appendChild(card);
+                results.appendChild(div);
             });
         }
 
-        async function sendFeedback(company, feedback, btn) {
-            const span = btn.parentElement.querySelector(".sent");
-
+        async function sendFeedback(company, feedback) {
             await fetch("/feedback", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    query: lastQuery,
-                    company: company,
-                    feedback: feedback
-                })
+                body: JSON.stringify({ query: "", company, feedback })
             });
-
-            span.innerText = "Feedback saved ✓";
         }
     </script>
 
